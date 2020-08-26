@@ -416,8 +416,8 @@ public class DES {
         //Tu mi usunęło wersję dla DES i odpala 3DES.
 
         cipher = des.crypto(key3, des.crypto(key2, des.crypto(key1, utfToBin(plain), true), false), true);
-        System.out.println(binToHex(cipher));
+        System.out.println("Encrypted message: " + binToHex(cipher));
 
-        System.out.println(binToUTF(des.crypto(key1, des.crypto(key2, des.crypto(key3, cipher, false), true), false)));
+        System.out.println("Decrypted message: " + binToUTF(des.crypto(key1, des.crypto(key2, des.crypto(key3, cipher, false), true), false)));
     }
 }
