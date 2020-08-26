@@ -387,7 +387,7 @@ public class DES {
         EventQueue.invokeLater(new Runnable() { //Keys x3. Message. Result // Hide keys or show
             @Override
             public void run() {
-                new MyFrame(des);
+                new MyFrame(des); //normalnie jest MyFrame() bez des. Czy powinienem przekazywać des, czy nie?
             }
         });
         System.out.println(des.getDes3());
