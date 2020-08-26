@@ -15,7 +15,9 @@ public class RadioPanel extends JPanel implements ActionListener {
     private JRadioButton modeAuto;
     private JRadioButton modeManual;
 
-    public RadioPanel() {
+    boolean des3 = false;
+
+    public RadioPanel(DES des) {
         modeDES = new JRadioButton("DES");
         modeDES.setSelected(true);
         mode3DES = new JRadioButton("3DES");
@@ -48,6 +50,7 @@ public class RadioPanel extends JPanel implements ActionListener {
         modeManual.addActionListener(this);
         add(modeAuto);
         add(modeManual);
+        des.setDes3(true); //coś nie halo
     }
 
     @Override
@@ -56,8 +59,11 @@ public class RadioPanel extends JPanel implements ActionListener {
 
         if (source == modeDES) {
             System.out.println("DES");
-        } else if (source == mode3DES)
+            des3 = false; // to nie pomaga
+        } else if (source == mode3DES) {
             System.out.println("3DES");
+            des3 = true;
+        }
 
         if (source == modeEncrypt) {
             System.out.println("Encrypt");

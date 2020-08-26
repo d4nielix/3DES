@@ -387,9 +387,10 @@ public class DES {
         EventQueue.invokeLater(new Runnable() { //Keys x3. Message. Result // Hide keys or show
             @Override
             public void run() {
-                new MyFrame();
+                new MyFrame(des);
             }
         });
+        System.out.println(des.getDes3());
 
         try {
             String s = null;

@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class MyFrame extends JFrame {
 
-    public MyFrame() {
+    public MyFrame(DES des) {
         super("DES");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -13,7 +13,7 @@ public class MyFrame extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new FlowLayout());
 
-        JPanel radioPanel = new RadioPanel();
+        JPanel radioPanel = new RadioPanel(des);
         add(radioPanel);
 
         CryptoListener listener = new CryptoListener(this);
