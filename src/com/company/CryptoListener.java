@@ -8,9 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class CryptoListener implements ActionListener {
-    //Główna ramka programu
     private final JFrame frame;
-    //Panel logowania, potrzebny do pobrania loginu i hasła
     private CryptoPanel cryptoPanel;
 
     public void setPanel(CryptoPanel loginPanel) {

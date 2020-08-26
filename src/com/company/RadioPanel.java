@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class RadioPanel extends JPanel implements ActionListener{
+public class RadioPanel extends JPanel implements ActionListener {
 
     private JRadioButton modeDES;
     private JRadioButton mode3DES;
@@ -54,23 +54,20 @@ public class RadioPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
 
-        if(source == modeDES) {
+        if (source == modeDES) {
             System.out.println("DES");
-        }
-        else if(source == mode3DES)
+        } else if (source == mode3DES)
             System.out.println("3DES");
 
-        if(source == modeEncrypt){
+        if (source == modeEncrypt) {
             System.out.println("Encrypt");
-        }
-        else if(source == modeDecrypt){
+        } else if (source == modeDecrypt) {
             System.out.println("Decrypt");
         }
 
-        if(source == modeAuto){
+        if (source == modeAuto) {
             System.out.println("Generate keys");
-        }
-        else if(source == modeManual){
+        } else if (source == modeManual) {
             System.out.println("Manual keys");
         }
     }

@@ -395,7 +395,7 @@ public class DES {
             String s = null;
             String keyNumber = "3";
             String keySize = "10000000";
-            Process p = Runtime.getRuntime().exec("python C:\\Users\\danie\\IdeaProjects\\3DES\\src\\com\\company\\rng.py --sequence " + keyNumber + " " + keySize);
+            Process p = Runtime.getRuntime().exec("python src\\com\\company\\rng.py --sequence " + keyNumber + " " + keySize);
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
             for (int i = 0; i < 6; i++) {
                 s = in.readLine();
