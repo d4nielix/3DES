@@ -1,28 +1,24 @@
 package com.company;
 
-import java.io.*;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Scanner;
-import java.awt.EventQueue;
 
 public class DES {
 
     private final long[] K;
-    private boolean des3;
+    private int des3;
 
     public DES() {
         K = new long[17];
-        des3 = false;
+        des3 = 1;
     }
 
-    //GETTERS AND SETTERS
-    public boolean getDes3() {
+    public int getDes3() {
         return des3;
     }
 
-    public void setDes3(boolean newDes3) {
+    public void setDes3(int newDes3) {
         this.des3 = newDes3;
     }
 
@@ -154,13 +150,20 @@ public class DES {
             33, 1, 41, 9, 49, 17, 57, 25
     };
 
-    private static String binToHex(String bin) {
+    public static String binToHex(String bin) {
         BigInteger b = new BigInteger(bin, 2);
 
         return b.toString(16);
     }
 
-    private static String binToUTF(String bin) {
+    public static String hexToBin(String hex) {
+
+        BigInteger b = new BigInteger(hex, 16);
+
+        return b.toString(2);
+    }
+
+    public static String binToUTF(String bin) {
         byte[] ciphertextBytes = new byte[bin.length() / 8];
         String ciphertext;
         for (int j = 0; j < ciphertextBytes.length; j++) {
@@ -175,7 +178,7 @@ public class DES {
         return ciphertext.trim();
     }
 
-    private static String utfToBin(String utf) {
+    public static String utfToBin(String utf) {
         byte[] bytes;
         bytes = utf.getBytes(StandardCharsets.UTF_8);
 
@@ -374,51 +377,5 @@ public class DES {
         }
 
         return mergedP.toString();
-    }
-
-    public static void main(String[] args) throws IOException {
-        DES des = new DES();
-        String key1 = "1";
-        String key2 = "2";
-        String key3 = "3";
-        String plain = "daniel";
-        String cipher = null;
-
-        EventQueue.invokeLater(new Runnable() { //Keys x3. Message. Result // Hide keys or show
-            @Override
-            public void run() {
-                new MyFrame(des); //normalnie jest MyFrame() bez des. Czy powinienem przekazywać des, czy nie?
-            }
-        });
-        System.out.println(des.getDes3());
-
-        try {
-            String s = null;
-            String keyNumber = "3";
-            String keySize = "10000000";
-            Process p = Runtime.getRuntime().exec("python src\\com\\company\\rng.py --sequence " + keyNumber + " " + keySize);
-            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            for (int i = 0; i < 6; i++) {
-                s = in.readLine();
-                if (i == 0 & s != null) {
-                    key1 = s;
-                } else if (i == 2 & s != null) {
-                    key2 = s;
-                } else if (i == 4 & s != null) {
-                    key3 = s;
-                }
-            }
-        } catch (IOException ie) {
-            ie.printStackTrace();
-        }
-
-        System.out.println(key1 + " " + key2 + " " + key3);
-
-        //Tu mi usunęło wersję dla DES i odpala 3DES.
-
-        cipher = des.crypto(key3, des.crypto(key2, des.crypto(key1, utfToBin(plain), true), false), true);
-        System.out.println("Encrypted message: " + binToHex(cipher));
-
-        System.out.println("Decrypted message: " + binToUTF(des.crypto(key1, des.crypto(key2, des.crypto(key3, cipher, false), true), false)));
     }
 }
